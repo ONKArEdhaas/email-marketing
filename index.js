@@ -1,16 +1,14 @@
 const express = require("express");
 const cors = require('cors');
+const path = require('path');
 require("dotenv").config();
-// const userRoutes = require('./routes/userRoutes');
 const sendMail = require('./controller/mailer'); // Import the mailer
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 // CORS options
 const corsOptions = {
-    origin: 'https://radiant-caramel-7ef8f7.netlify.app/',
-    // origin: 'http://localhost:5173' || 'https://incandescent-choux-02bcae.netlify.app/', // Update this to match your frontend URL
+    origin: 'https://radiant-caramel-7ef8f7.netlify.app', // Your frontend URL on Netlify
     credentials: true,
     optionsSuccessStatus: 200
 };
@@ -19,11 +17,14 @@ const corsOptions = {
 app.use(express.json());
 app.use(cors(corsOptions));
 
+// Serve static files (frontend)
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Log requests for debugging
-// app.use((req, res, next) => {
-//     console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-//     next();
-// });
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    next();
+});
 
 // Route to send email
 app.post('/send-email', (req, res) => {
@@ -31,7 +32,7 @@ app.post('/send-email', (req, res) => {
 
     // Validate input
     if (!email || !subject || !html) {
-        return res.status(400).json({ error: 'Please provide name, email, subject, and message.' });
+        return res.status(400).json({ error: 'Please provide email, subject, and message.' });
     }
 
     // Send the email
@@ -39,12 +40,14 @@ app.post('/send-email', (req, res) => {
     res.status(200).json({ message: 'Email sent successfully!' });
 });
 
-// Routes
-// app.use('/api/user', userRoutes); // Use your routes, or add more as needed
-
-// Fallback route for undefined endpoints
+// Fallback route for undefined API endpoints
 app.use((req, res, next) => {
     res.status(404).json({ error: 'Route not found' });
+});
+
+// Serve frontend for all non-API routes
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // General error handler
@@ -54,6 +57,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server started at ${PORT}`);
+    console.log(`Server started at port ${PORT}`);
 });
