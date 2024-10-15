@@ -9,7 +9,8 @@ const PORT = process.env.PORT || 3000;
 
 // CORS options
 const corsOptions = {
-    origin: 'http://localhost:5173' || 'https://incandescent-choux-02bcae.netlify.app/', // Update this to match your frontend URL
+    origin: 'https://incandescent-choux-02bcae.netlify.app/',
+    // origin: 'http://localhost:5173' || 'https://incandescent-choux-02bcae.netlify.app/', // Update this to match your frontend URL
     credentials: true,
     optionsSuccessStatus: 200
 };
