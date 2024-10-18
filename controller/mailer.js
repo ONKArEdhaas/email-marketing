@@ -5,38 +5,13 @@ require('dotenv').config();
 const transporter = nodemailer.createTransport({
 	service: 'gmail',
 	auth: {
-		user: 'pathakteja@gmail.com',
-		pass: 'oqhbqnoalzrjvjfv'
+		// user: 'pathakteja@gmail.com',
+		// pass: 'oqhbqnoalzrjvjfv'
+		user: 'sales1.edhaasvisuals@gmail.com',
+		pass: 'zdhunpdbhnqedsnr'
 	}
 });
 
-// Function to send an email
-// const sendMail = (email, subject, html) => {
-// 	const mailOptions = {
-// 		from: process.env.EMAIL_USER,
-// 		to: email,
-// 		subject: subject,
-// 		// text: `Hello ${name},\n\n${message}`, // Plain text body
-// 		html: html
-
-
-// 	};
-
-// 	// Send mail
-// 	transporter.sendMail(mailOptions, (error, info) => {
-// 		if (error) {
-// 			console.error('Error occurred while sending email:', error);
-// 			// Check if the error has a specific code
-// 			if (error.response) {
-// 				console.error('Error response:', error.response);
-// 			}
-// 			return; // Exit the function on error
-// 		}
-
-// 		// Success message
-// 		console.log(`Email sent successfully: ${info.response}`);
-// 	});
-// };
 
 const sendMail = (emails, subject, html) => {
 	emails.forEach((email) => {
