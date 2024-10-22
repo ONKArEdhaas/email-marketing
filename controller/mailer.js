@@ -7,8 +7,8 @@ const transporter = nodemailer.createTransport({
 	auth: {
 		// user: 'pathakteja@gmail.com',
 		// pass: 'oqhbqnoalzrjvjfv'
-		user: 'sales1.edhaasvisuals@gmail.com',
-		pass: 'zdhunpdbhnqedsnr'
+		user: 'edhaasinfo@gmail.com',
+		pass: 'crqvuchufedyvlzn'
 	}
 });
 
@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 const sendMail = (emails, subject, html) => {
 	emails.forEach((email) => {
 		const mailOptions = {
-			from: 'pathakteja@gmail.com',
+			from: 'edhaasinfo@gmail.com',
 			to: email,
 			subject: subject,
 			html: html
