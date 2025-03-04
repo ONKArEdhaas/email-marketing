@@ -8,7 +8,7 @@ const transporter = nodemailer.createTransport({
 		// user: 'pathakteja@gmail.com',
 		// pass: 'oqhbqnoalzrjvjfv'
 		user: 'edhaasinfo@gmail.com',
-		pass: 'crqvuchufedyvlzn'
+		pass: 'kbevqoffzcmjcxex'
 	}
 });
 
