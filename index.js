@@ -26,17 +26,22 @@ app.use((req, res, next) => {
     next();
 });
 
+
+
+
+
+
 // Route to send email
 app.post('/send-email', (req, res) => {
-    const { email, subject, html } = req.body;
+    const { email, subject, html, senderMail } = req.body;
 
     // Validate input
-    if (!email || !subject || !html) {
+    if (!email || !subject || !html || !senderMail) {
         return res.status(400).json({ error: 'Please provide email, subject, and message.' });
     }
 
     // Send the email
-    sendMail(email, subject, html);
+    sendMail(email, subject, html, senderMail);
     res.status(200).json({ message: 'Email sent successfully!' });
 });
 
