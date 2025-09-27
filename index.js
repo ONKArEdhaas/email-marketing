@@ -8,7 +8,7 @@ const app = express();
 
 // CORS options
 const corsOptions = {
-    origin: ['https://radiant-caramel-7ef8f7.netlify.app', 'http://localhost:5173', 'https://email-marketing-ogt1.onrender.com'], // Your frontend URL on Netlify
+    origin: [ 'http://localhost:5173', 'https://email-marketing-ogt1.onrender.com'], // Your frontend URL on Netlify
     credentials: true,
     optionsSuccessStatus: 200
 };
